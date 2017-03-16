@@ -5,9 +5,9 @@ public class Sorting
 {
     public static int MaxLin (int[] table)
     {
-        int maxValue = 0;
-        
-        for (int i = 0; i < table.length; i++)
+        int maxValue = table[0];
+    
+        for (int i = 1; i < table.length; i++)
         {
             if(maxValue < table[i]) maxValue = table[i];
         }
@@ -29,10 +29,10 @@ public class Sorting
         for (i = 0; i < table.length - 1; i++)
         {
             minValue = i;
-            
-            for (j = i; j < table.length; j++)
+    
+            for (j = i + 1; j < table.length; j++)
             {
-                if(table[minValue] > table[j]) minValue = j;
+                if(table[j] < table[minValue]) minValue = j;
             }
             
             int temp = table[i];
