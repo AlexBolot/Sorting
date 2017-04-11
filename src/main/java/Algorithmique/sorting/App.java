@@ -1,6 +1,16 @@
-package Sorting;
+package Algorithmique.sorting;
 
 import java.util.Random;
+
+/*................................................................................................................................
+ . Copyright (c)
+ .
+ . The App	 Class was Coded by : Alexandre BOLOT
+ .
+ . Last Modified : 11/04/17 23:47
+ .
+ . Contact : bolotalex06@gmail.com
+ ...............................................................................................................................*/
 
 /**
  Hello world!

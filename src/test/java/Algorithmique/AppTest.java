@@ -1,8 +1,18 @@
-package Sorting;
+package Algorithmique;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+/*................................................................................................................................
+ . Copyright (c)
+ .
+ . The AppTest	 Class was Coded by : Alexandre BOLOT
+ .
+ . Last Modified : 11/04/17 23:47
+ .
+ . Contact : bolotalex06@gmail.com
+ ...............................................................................................................................*/
 
 /**
  Unit test for simple App.

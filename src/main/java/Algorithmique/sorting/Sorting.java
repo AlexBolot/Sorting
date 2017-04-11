@@ -1,4 +1,14 @@
-package Sorting;
+package Algorithmique.sorting;
+
+/*................................................................................................................................
+ . Copyright (c)
+ .
+ . The Sorting	 Class was Coded by : Alexandre BOLOT
+ .
+ . Last Modified : 11/04/17 23:47
+ .
+ . Contact : bolotalex06@gmail.com
+ ...............................................................................................................................*/
 
 @SuppressWarnings("ALL")
 public class Sorting
