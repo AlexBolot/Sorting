@@ -7,14 +7,11 @@ import java.util.Random;
  .
  . The App	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 11/04/17 23:47
+ . Last Modified : 13/04/17 14:37
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
-/**
- Hello world!
- */
 public class App
 {
     public static void main (String[] args)

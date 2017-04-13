@@ -3,7 +3,7 @@
   .
   . The pom.xml	 Class was Coded by : Alexandre BOLOT
   .
-  . Last Modified : 11/04/17 23:46
+  . Last Modified : 13/04/17 14:30
   .
   . Contact : bolotalex06@gmail.com
   .............................................................................................................................-->
@@ -12,8 +12,8 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>Sorting</groupId>
-	<artifactId>Sorting</artifactId>
+	<groupId>Algorithmique</groupId>
+	<artifactId>Algorithmique</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	

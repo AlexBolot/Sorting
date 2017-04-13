@@ -7,7 +7,7 @@ import java.util.HashMap;
  .
  . The FindMajority	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 11/04/17 23:47
+ . Last Modified : 13/04/17 14:46
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -86,16 +86,6 @@ public class FindMajority<T>
         return new CoupleValues(null, -1);
     }
     
-    
-    /**
-     Retourne le nombre d'occurence d'une valeur dans un tableau
-     
-     @param t     Valeur à rechercher
-     @param table Tableau dans lequel chercher
-     @param start Index Debut
-     @param end   Index Fin
-     @return Le nombre d'occurences de t dans table
-     */
     private int Occurences (T t, T[] table, int start, int end)
     {
         int occurences = 0;
@@ -110,9 +100,6 @@ public class FindMajority<T>
         return occurences;
     }
     
-    /**
-     Gère un couple T/int sous forme {value; amount}
-     */
     private class CoupleValues
     {
         T   value;
