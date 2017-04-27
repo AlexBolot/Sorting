@@ -1,0 +1,48 @@
+22 objets Disponibles
+
+Sac de poids max 194 (brute force): 740
+> socks de valeur 50 et de poids 4
+> note case de valeur 80 et de poids 22
+> waterproof overclothes de valeur 75 et de poids 43
+> sun tan cream de valeur 70 et de poids 11
+> banana de valeur 60 et de poids 27
+> glucose de valeur 60 et de poids 15
+> sandwich de valeur 160 et de poids 50
+> compass de valeur 35 et de poids 13
+> map de valeur 150 et de poids 9
+Sac de 9 articles de valeur totale 740 et de poids total 194
+
+Sac de poids max 194 (glouton plus grande valeur): 480
+> water de valeur 200 et de poids 153
+> map de valeur 150 et de poids 9
+> note case de valeur 80 et de poids 22
+> socks de valeur 50 et de poids 4
+Sac de 4 articles de valeur totale 480 et de poids total 188
+
+Sac de poids max 194 (glouton meilleur ratio): 715
+> map de valeur 150 et de poids 9
+> socks de valeur 50 et de poids 4
+> sun tan cream de valeur 70 et de poids 11
+> glucose de valeur 60 et de poids 15
+> note case de valeur 80 et de poids 22
+> sandwich de valeur 160 et de poids 50
+> sunglasses de valeur 20 et de poids 7
+> compass de valeur 35 et de poids 13
+> banana de valeur 60 et de poids 27
+> cheese de valeur 30 et de poids 23
+Sac de 10 articles de valeur totale 715 et de poids total 181
+
+Sac de poids max 194 (BruteForce Dynamique): 740
+> socks de valeur 50 et de poids 4
+> note case de valeur 80 et de poids 22
+> waterproof overclothes de valeur 75 et de poids 43
+> sun tan cream de valeur 70 et de poids 11
+> banana de valeur 60 et de poids 27
+> glucose de valeur 60 et de poids 15
+> sandwich de valeur 160 et de poids 50
+> compass de valeur 35 et de poids 13
+> map de valeur 150 et de poids 9
+Sac de 9 articles de valeur totale 740 et de poids total 194
+
+
+

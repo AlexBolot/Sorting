@@ -1,0 +1,22 @@
+9 150 map
+13 35 compass
+153 200 water
+50 160 sandwich
+15 60 glucose
+68 45 tin
+27 60 banana
+39 40 apple
+23 30 cheese
+52 10 beer
+11 70 sun tan cream
+32 30 camera
+24 15 t-shirt
+48 10 trousers
+73 40 umbrella
+42 70 waterproof trousers
+43 75 waterproof overclothes
+22 80 note case
+7 20 sunglasses
+18 12 towel
+4 50 socks
+30 10 book
