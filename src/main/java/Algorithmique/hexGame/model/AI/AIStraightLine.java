@@ -6,13 +6,14 @@ import Algorithmique.hexGame.model.HexModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 /*................................................................................................................................
  . Copyright (c)
  .
  . The AIStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 06/06/17 15:54
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -24,81 +25,69 @@ public class AIStraightLine implements AIPlayer
     
     public AIStraightLine ()
     {
-        for (int i = 0; i < model.grid.getNbColumns() - 1; i++)
-        {
-            playedCells.add(new Cell(i, 0, COLOR, true));
-        }
+        playedCells = new ArrayList<>();
     }
     
     @Override
     public Cell getNextMove ()
     {
-        Cell optimalCell = getPotentialCells().get(0);
-        
-        for (Cell cell : getPotentialCells())
-        {
-            if(getCellWeight(optimalCell) > getCellWeight(cell)) optimalCell = cell;
-        }
-        
-        playedCells.add(optimalCell);
-        return optimalCell;
+        return playedCells.size() == 0 ? getFirstMove() : getFollowingMove();
     }
     
-    private int getCellWeight (Cell cell)
+    private Cell getFirstMove ()
     {
-        if(cell.getY() == model.grid.getNbColumns() - 2) return 0;
-        
-        int minWheight = Integer.MAX_VALUE;
-        
-        for (Cell c : getNeighborCells(cell))
+        Random random = new Random();
+    
+        int i = 1;
+        int j = random.nextInt(8) + 1;
+    
+        Cell cell = model.grid.getCell(i, j);
+        while (!isValid(cell))
         {
-            if(c != null)
-            {
-                int weight = getCellWeight(c);
-                if(weight < minWheight) minWheight = weight;
-            }
+            j = random.nextInt(8) + 1;
+            cell = model.grid.getCell(i, j);
         }
-        
-        return minWheight + 1;
+    
+        playedCells.add(cell);
+        return cell;
     }
     
-    private ArrayList<Cell> getPotentialCells ()
+    private Cell getFollowingMove ()
     {
-        ArrayList<Cell> potentialCells = new ArrayList<>();
-        
-        for (Cell cell : playedCells)
-        {
-            potentialCells.addAll(getNeighborCells(cell));
-        }
-        
-        return potentialCells;
-    }
+        int size = playedCells.size();
+        Cell lastPlayed = playedCells.get(size - 1);
     
-    private ArrayList<Cell> getNeighborCells (Cell cell)
-    {
-        ArrayList<Cell> neighborCells = new ArrayList<>();
-        
-        int i = cell.getX();
-        int j = cell.getY();
-        
-        // On crée 6 celules qui correspondent aux 6 cellules voisines d'une cellule
-        Cell c1 = model.grid.getCell(i - 1, j);
-        Cell c2 = model.grid.getCell(i - 1, j + 1);
-        Cell c3 = model.grid.getCell(i, j + 1);
-        Cell c4 = model.grid.getCell(i + 1, j);
-        Cell c5 = model.grid.getCell(i + 1, j - 1);
-        Cell c6 = model.grid.getCell(i, j - 1);
-        
-        // En revanche pour les cellules des coins et du bord il n'y a pas 6 cellules voisines mais moins, c'est pourquoi on test si elles sont null.
-        // Si elles le sont c'est qu'il n'existe pas de cellule voisines avec les coordonées reseignéé.
-        if(isValid(c1)) neighborCells.add(c1);
-        if(isValid(c2)) neighborCells.add(c2);
-        if(isValid(c3)) neighborCells.add(c3);
-        if(isValid(c4)) neighborCells.add(c4);
-        if(isValid(c5)) neighborCells.add(c5);
-        if(isValid(c6)) neighborCells.add(c6);
-        
-        return neighborCells;
+        int i = lastPlayed.getX();
+        int j = lastPlayed.getY();
+    
+        Cell nextCell = model.grid.getCell(i + 1, j);
+        if(isValid(nextCell))
+        {
+            playedCells.add(nextCell);
+            return nextCell;
+        }
+    
+        nextCell = model.grid.getCell(i + 1, j - 1);
+        if(isValid(nextCell))
+        {
+            playedCells.add(nextCell);
+            return nextCell;
+        }
+    
+        nextCell = model.grid.getCell(i + 1, j + 1);
+        if(isValid(nextCell))
+        {
+            playedCells.add(nextCell);
+            return nextCell;
+        }
+    
+        while (!isValid(nextCell))
+        {
+            nextCell = model.grid.getCell(new Random().nextInt(8) + 1, new Random().nextInt(8) + 1);
+        }
+    
+        playedCells.add(nextCell);
+        return nextCell;
     }
     
     private boolean isValid (Cell cell)
