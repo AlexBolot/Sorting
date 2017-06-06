@@ -13,7 +13,7 @@ import java.util.Random;
  .
  . The AIStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 15:54
+ . Last Modified : 06/06/17 16:24
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -60,34 +60,55 @@ public class AIStraightLine implements AIPlayer
         int i = lastPlayed.getX();
         int j = lastPlayed.getY();
     
-        Cell nextCell = model.grid.getCell(i + 1, j);
-        if(isValid(nextCell))
+        ArrayList<Cell> cellsToPlay = new ArrayList<>();
+    
+        //Bottom-Right
+        cellsToPlay.add(getCell(i + 1, j));
+    
+        //Bottom-Left
+        cellsToPlay.add(getCell(i + 1, j - 1));
+    
+        //Right
+        cellsToPlay.add(getCell(i, j + 1));
+    
+        //Left
+        cellsToPlay.add(getCell(i, j - 1));
+    
+        //Top-Right
+        cellsToPlay.add(getCell(i - 1, j + 1));
+    
+        //Top-Left
+        cellsToPlay.add(getCell(i - 1, j));
+    
+        for (Cell cell : cellsToPlay)
         {
-            playedCells.add(nextCell);
-            return nextCell;
+            if(isValid(cell))
+            {
+                playedCells.add(cell);
+                return cell;
+            }
         }
     
-        nextCell = model.grid.getCell(i + 1, j - 1);
-        if(isValid(nextCell))
-        {
-            playedCells.add(nextCell);
-            return nextCell;
-        }
+        int randX = new Random().nextInt(8) + 1;
+        int randY = new Random().nextInt(8) + 1;
     
-        nextCell = model.grid.getCell(i + 1, j + 1);
-        if(isValid(nextCell))
-        {
-            playedCells.add(nextCell);
-            return nextCell;
-        }
-    
+        Cell nextCell = getCell(randX, randY);
+        
         while (!isValid(nextCell))
         {
-            nextCell = model.grid.getCell(new Random().nextInt(8) + 1, new Random().nextInt(8) + 1);
+            randX = new Random().nextInt(8) + 1;
+            randY = new Random().nextInt(8) + 1;
+    
+            nextCell = getCell(randX, randY);
         }
     
         playedCells.add(nextCell);
         return nextCell;
+    }
+    
+    private Cell getCell (int x, int y)
+    {
+        return model.grid.getCell(x, y);
     }
     
     private boolean isValid (Cell cell)
@@ -102,5 +123,11 @@ public class AIStraightLine implements AIPlayer
         if(!(o instanceof HexModel)) return;
         
         this.model = (HexModel) o;
+    
+        //If game restarts
+        if(!this.model.getCurrentGame())
+        {
+            playedCells.clear();
+        }
     }
 }

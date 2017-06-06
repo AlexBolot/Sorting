@@ -11,7 +11,7 @@ import java.awt.*;
  .
  . The GamePanel	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 06/06/17 16:24
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -42,9 +42,9 @@ public class GamePanel extends JPanel
     public void paint (Graphics g)
     {
         super.paint(g);
-        
-        if(model.getPlayer() == Color.BLUE) currentPlayer.setText("C'est au currentPlayer du bleu!");
-        else currentPlayer.setText("C'est au currentPlayer du rouge!");
+    
+        // if(model.getPlayer() == Color.BLUE) currentPlayer.setText("C'est au currentPlayer du bleu!");
+        // else currentPlayer.setText("C'est au currentPlayer du rouge!");
         
         for (Cell c : this.model.grid)
         {

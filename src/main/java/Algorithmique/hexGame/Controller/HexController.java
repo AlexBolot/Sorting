@@ -1,5 +1,6 @@
 package Algorithmique.hexGame.controller;
 
+import Algorithmique.hexGame.model.AI.AIPlayer;
 import Algorithmique.hexGame.model.Cell;
 import Algorithmique.hexGame.model.HexModel;
 import Algorithmique.hexGame.view.HexView;
@@ -15,7 +16,7 @@ import java.awt.event.MouseListener;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 06/06/17 16:24
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -28,22 +29,23 @@ import java.awt.event.MouseListener;
 
 public class HexController implements ActionListener, MouseListener
 {
-    
     private HexModel model;
     private HexView  view;
+    private AIPlayer aiPlayer;
     
     /**
-     **********
+     ***
      
      Constructeur
-     
-     ***********
+ 
+     ****
      */
-    
-    public HexController (HexModel model, HexView view)
+
+    public HexController (HexModel model, HexView view, AIPlayer player)
     {
         this.model = model;
         this.view = view;
+        this.aiPlayer = player;
         
         view.pMenu.bPlay.addActionListener(this);
         view.pMenu.bReset.addActionListener(this);
@@ -56,15 +58,15 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ****************
+     *********
      
      Action des boutons
      
      Les attributs du model enJeu et enCours permettent de connaitre l'état du jeu.
      L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
      Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
-     
-     *****************
+ 
+     **********
      */
     
     @Override
@@ -136,11 +138,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ************************
+     *****************
      
      Action de la souris en jeu
-     
-     *************************
+ 
+     ******************
      */
     
     @Override
@@ -151,6 +153,7 @@ public class HexController implements ActionListener, MouseListener
             // On recupère les coordonnées du clique de la souris
             float x = e.getX();
             float y = e.getY();
+            boolean validMove = false;
             /*
               Pour toutes les cellules de la grid si les coordonnées de la souris sont comprises dans une cellule de la grid alors on change la couleur
               de cette cellule avec la couleur du joueur en courant.
@@ -158,42 +161,47 @@ public class HexController implements ActionListener, MouseListener
              */
             for (Cell c : model.grid)
             {
-                if(c.contains(x, y) && c.getColor() == Color.WHITE) if(model.getPlayer() == Color.BLUE)
-                {
-                    c.setColor(Color.BLUE);
-                    model.setPlayer(Color.RED);
-                    // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
-                    model.researchVictory(0, 1);
-                }
-                else
+                if(c.contains(x, y) && c.getColor() == Color.WHITE)
                 {
                     c.setColor(Color.RED);
-                    model.setPlayer(Color.BLUE);
-                    // On test la victoire pour le joueur rouge, c'est à dire en partant de la cellule rouge en 1,0
+                    // On test la victoire pour le joueur rouge, c'est à dire en partant de la cellule bleu en 1,0
                     model.researchVictory(1, 0);
+                    validMove = true;
                 }
+            }
+    
+            if(validMove)
+            {
+                Cell aiNextMove = aiPlayer.getNextMove();
+                aiNextMove.setColor(Color.BLUE);
+                // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
+                model.researchVictory(0, 1);
             }
         }
     }
     
+    //Empty
     @Override
     public void mousePressed (MouseEvent e)
     {
     
     }
     
+    //Empty
     @Override
     public void mouseReleased (MouseEvent e)
     {
     
     }
     
+    //Empty
     @Override
     public void mouseEntered (MouseEvent e)
     {
     
     }
     
+    //Empty
     @Override
     public void mouseExited (MouseEvent e)
     {
