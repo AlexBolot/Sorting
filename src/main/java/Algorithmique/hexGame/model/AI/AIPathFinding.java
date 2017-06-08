@@ -12,7 +12,7 @@ import java.util.Observable;
  .
  . The AIPathFinding	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 14:04
+ . Last Modified : 08/06/17 13:37
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -26,7 +26,7 @@ public class AIPathFinding implements AIPlayer
     {
         for (int i = 0; i < model.grid.getNbColumns() - 1; i++)
         {
-            playedCells.add(new Cell(i, 0, COLOR, true));
+            playedCells.add(new Cell(i, 0, Color.RED, true));
         }
     }
     

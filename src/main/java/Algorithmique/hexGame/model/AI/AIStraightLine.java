@@ -13,7 +13,7 @@ import java.util.Random;
  .
  . The AIStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 16:24
+ . Last Modified : 08/06/17 13:37
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -113,7 +113,7 @@ public class AIStraightLine implements AIPlayer
     
     private boolean isValid (Cell cell)
     {
-        return cell != null && !model.grid.getPast(cell) && cell.getColor() == Color.WHITE && !playedCells.contains(cell);
+        return cell != null && !model.grid.getPast(cell) && cell.getColor() == Color.WHITE;
     }
     
     @Override

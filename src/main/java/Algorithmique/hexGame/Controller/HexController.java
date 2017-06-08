@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 16:24
+ . Last Modified : 08/06/17 13:47
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -32,20 +32,22 @@ public class HexController implements ActionListener, MouseListener
     private HexModel model;
     private HexView  view;
     private AIPlayer aiPlayer;
+    private boolean  aiFirst;
     
     /**
-     ***
-     
-     Constructeur
+     **
  
-     ****
+     Constructeurs
+ 
+     ***
      */
 
-    public HexController (HexModel model, HexView view, AIPlayer player)
+    public HexController (HexModel model, HexView view, AIPlayer player, boolean aiFirst)
     {
         this.model = model;
         this.view = view;
         this.aiPlayer = player;
+        this.aiFirst = aiFirst;
         
         view.pMenu.bPlay.addActionListener(this);
         view.pMenu.bReset.addActionListener(this);
@@ -58,7 +60,7 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     *********
+     ********
      
      Action des boutons
      
@@ -66,7 +68,7 @@ public class HexController implements ActionListener, MouseListener
      L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
      Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
  
-     **********
+     *********
      */
     
     @Override
@@ -82,11 +84,20 @@ public class HexController implements ActionListener, MouseListener
             {
                 model.setInGame(true);
                 model.setCurrentGame(true);
+    
+                if(aiFirst)
+                {
+                    aiPlayer.getNextMove().setColor(Color.BLUE);
+        
+                    // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
+                    this.model.researchVictory(0, 1);
+                }
             }
             else if(e.getSource() == view.pMenu.bQuit)
             {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
+                System.exit(0);
             }
         }
 
@@ -112,6 +123,7 @@ public class HexController implements ActionListener, MouseListener
             {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
+                System.exit(0);
             }
         }
 
@@ -138,11 +150,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     *****************
+     ****************
      
      Action de la souris en jeu
  
-     ******************
+     *****************
      */
     
     @Override
@@ -180,33 +192,29 @@ public class HexController implements ActionListener, MouseListener
         }
     }
     
-    //Empty
+    //region empty methods
     @Override
     public void mousePressed (MouseEvent e)
     {
     
     }
     
-    //Empty
     @Override
     public void mouseReleased (MouseEvent e)
     {
     
     }
     
-    //Empty
     @Override
     public void mouseEntered (MouseEvent e)
     {
     
     }
     
-    //Empty
     @Override
     public void mouseExited (MouseEvent e)
     {
     
     }
-    
-    
+    //endregion
 }
