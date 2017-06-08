@@ -9,7 +9,7 @@ import java.util.Observable;
  .
  . The HexModel	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 16:24
+ . Last Modified : 08/06/17 13:47
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
