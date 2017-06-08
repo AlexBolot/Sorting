@@ -1,5 +1,6 @@
-package Algorithmique.hexGame.model.AI;
+package Algorithmique.hexGame.model.AI.straightLine;
 
+import Algorithmique.hexGame.model.AI.AIPlayer;
 import Algorithmique.hexGame.model.Cell;
 import Algorithmique.hexGame.model.HexModel;
 
@@ -13,7 +14,7 @@ import java.util.Random;
  .
  . The AIVStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 15:03
+ . Last Modified : 08/06/17 15:25
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/

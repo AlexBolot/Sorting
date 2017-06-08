@@ -1,9 +1,9 @@
 package Algorithmique.hexGame;
 
 import Algorithmique.hexGame.controller.HexController;
-import Algorithmique.hexGame.model.AI.AIHStraightLine;
 import Algorithmique.hexGame.model.AI.AIPlayer;
-import Algorithmique.hexGame.model.AI.AIVStraightLine;
+import Algorithmique.hexGame.model.AI.straightLine.AIHStraightLine;
+import Algorithmique.hexGame.model.AI.straightLine.AIVStraightLine;
 import Algorithmique.hexGame.model.HexModel;
 import Algorithmique.hexGame.view.HexView;
 
@@ -12,7 +12,7 @@ import Algorithmique.hexGame.view.HexView;
  .
  . The Main	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 15:02
+ . Last Modified : 08/06/17 15:25
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
