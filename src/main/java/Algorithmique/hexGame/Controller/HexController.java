@@ -5,18 +5,21 @@ import Algorithmique.hexGame.model.Cell;
 import Algorithmique.hexGame.model.HexModel;
 import Algorithmique.hexGame.view.HexView;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 /*................................................................................................................................
  . Copyright (c)
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 15:03
+ . Last Modified : 08/06/17 16:28
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -37,8 +40,6 @@ public class HexController implements ActionListener, MouseListener
     
     /**
      Constructeurs
- 
-     *
      */
 
     public HexController (HexModel model, HexView view, AIPlayer player, Boolean aiFirst)
@@ -61,15 +62,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ******
-     
      Action des boutons
      
      Les attributs du model enJeu et enCours permettent de connaitre l'état du jeu.
      L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
      Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
- 
-     *******
      */
     
     @Override
@@ -145,11 +142,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     **************
+     ******
      
      Action de la souris en jeu
  
-     ***************
+     *******
      */
     
     @Override
@@ -178,10 +175,19 @@ public class HexController implements ActionListener, MouseListener
     
             if(validMove)
             {
+                playSound();
+                
                 aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
                 model.researchVictory(0, 1);
             }
         }
+    }
+    
+    private void playSound ()
+    {
+        URL resource = getClass().getClassLoader().getResource("BlopSound.wav");
+        AudioClip clip = Applet.newAudioClip(resource);
+        clip.play();
     }
     
     //region empty methods

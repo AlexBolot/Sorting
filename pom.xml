@@ -3,7 +3,7 @@
   .
   . The pom.xml	 Class was Coded by : Alexandre BOLOT
   .
-  . Last Modified : 27/04/17 15:12
+  . Last Modified : 08/06/17 16:18
   .
   . Contact : bolotalex06@gmail.com
   .............................................................................................................................-->
@@ -21,8 +21,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
