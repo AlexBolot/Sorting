@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 13:52
+ . Last Modified : 08/06/17 15:03
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -32,22 +32,23 @@ public class HexController implements ActionListener, MouseListener
     private HexModel model;
     private HexView  view;
     private AIPlayer aiPlayer;
-    private boolean  aiFirst;
+    private Boolean  aiFirst;
+    private Color    playerColor;
     
     /**
-     **
- 
      Constructeurs
  
-     ***
+     *
      */
 
-    public HexController (HexModel model, HexView view, AIPlayer player, boolean aiFirst)
+    public HexController (HexModel model, HexView view, AIPlayer player, Boolean aiFirst)
     {
         this.model = model;
         this.view = view;
         this.aiPlayer = player;
         this.aiFirst = aiFirst;
+    
+        playerColor = aiFirst ? Color.RED : Color.BLUE;
         
         view.pMenu.bPlay.addActionListener(this);
         view.pMenu.bReset.addActionListener(this);
@@ -60,7 +61,7 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ********
+     ******
      
      Action des boutons
      
@@ -68,7 +69,7 @@ public class HexController implements ActionListener, MouseListener
      L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
      Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
  
-     *********
+     *******
      */
     
     @Override
@@ -85,13 +86,7 @@ public class HexController implements ActionListener, MouseListener
                 model.setInGame(true);
                 model.setCurrentGame(true);
     
-                if(aiFirst)
-                {
-                    aiPlayer.getNextMove().setColor(Color.BLUE);
-        
-                    // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
-                    this.model.researchVictory(0, 1);
-                }
+                if(aiFirst) aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
             }
             else if(e.getSource() == view.pMenu.bQuit)
             {
@@ -150,11 +145,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ****************
+     **************
      
      Action de la souris en jeu
  
-     *****************
+     ***************
      */
     
     @Override
@@ -175,8 +170,7 @@ public class HexController implements ActionListener, MouseListener
             {
                 if(c.contains(x, y) && c.getColor() == Color.WHITE)
                 {
-                    c.setColor(Color.RED);
-                    // On test la victoire pour le joueur rouge, c'est à dire en partant de la cellule bleu en 1,0
+                    c.setColor(playerColor);
                     model.researchVictory(1, 0);
                     validMove = true;
                 }
@@ -184,9 +178,7 @@ public class HexController implements ActionListener, MouseListener
     
             if(validMove)
             {
-                aiPlayer.getNextMove().setColor(Color.BLUE);
-                
-                // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
+                aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
                 model.researchVictory(0, 1);
             }
         }
