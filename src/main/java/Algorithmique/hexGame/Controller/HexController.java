@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 13:47
+ . Last Modified : 08/06/17 13:52
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -184,8 +184,8 @@ public class HexController implements ActionListener, MouseListener
     
             if(validMove)
             {
-                Cell aiNextMove = aiPlayer.getNextMove();
-                aiNextMove.setColor(Color.BLUE);
+                aiPlayer.getNextMove().setColor(Color.BLUE);
+                
                 // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
                 model.researchVictory(0, 1);
             }
