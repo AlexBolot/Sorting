@@ -11,7 +11,7 @@ import java.awt.*;
  .
  . The GamePanel	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 06/06/17 16:24
+ . Last Modified : 08/06/17 09:41
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -25,15 +25,12 @@ import java.awt.*;
 public class GamePanel extends JPanel
 {
     public JButton bReturn = new JButton("Retour menu");
-    JLabel currentPlayer = new JLabel("Empty");
     private HexModel model;
     
     GamePanel (HexModel model)
     {
         super();
         this.model = model;
-        currentPlayer.setFont(new Font(currentPlayer.getFont().getName(), Font.PLAIN, 50));
-        add(currentPlayer);
         bReturn.setSize(100, 75);
         add(bReturn);
     }
