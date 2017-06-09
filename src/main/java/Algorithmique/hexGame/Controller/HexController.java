@@ -19,7 +19,7 @@ import java.net.URL;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 16:28
+ . Last Modified : 09/06/17 13:43
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -83,7 +83,7 @@ public class HexController implements ActionListener, MouseListener
                 model.setInGame(true);
                 model.setCurrentGame(true);
     
-                if(aiFirst) aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
+                if(aiFirst) playAiMove();
             }
             else if(e.getSource() == view.pMenu.bQuit)
             {
@@ -142,11 +142,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     ******
+     *****
      
      Action de la souris en jeu
  
-     *******
+     ******
      */
     
     @Override
@@ -168,18 +168,18 @@ public class HexController implements ActionListener, MouseListener
                 if(c.contains(x, y) && c.getColor() == Color.WHITE)
                 {
                     c.setColor(playerColor);
-                    model.researchVictory(1, 0);
                     validMove = true;
+                    playSound();
                 }
             }
     
             if(validMove)
             {
-                playSound();
-                
-                aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
-                model.researchVictory(0, 1);
+                playAiMove();
             }
+    
+            model.researchVictory(0, 1);
+            model.researchVictory(1, 0);
         }
     }
     
@@ -188,6 +188,20 @@ public class HexController implements ActionListener, MouseListener
         URL resource = getClass().getClassLoader().getResource("BlopSound.wav");
         AudioClip clip = Applet.newAudioClip(resource);
         clip.play();
+    }
+    
+    private void playAiMove ()
+    {
+        try
+        {
+            Thread.sleep(1000);
+            aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
+            playSound();
+        }
+        catch (InterruptedException ie)
+        {
+            ie.printStackTrace();
+        }
     }
     
     //region empty methods

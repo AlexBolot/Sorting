@@ -14,7 +14,7 @@ import java.util.Random;
  .
  . The AIHStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 15:25
+ . Last Modified : 09/06/17 13:43
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -23,6 +23,7 @@ public class AIHStraightLine implements AIPlayer
 {
     private HexModel        model       = new HexModel();
     private ArrayList<Cell> playedCells = new ArrayList<>();
+    private Random          random      = new Random();
     
     public AIHStraightLine ()
     {
@@ -89,9 +90,9 @@ public class AIHStraightLine implements AIPlayer
                 return cell;
             }
         }
-        
-        int randX = new Random().nextInt(8) + 1;
-        int randY = new Random().nextInt(8) + 1;
+    
+        int randX = random.nextInt(8) + 1;
+        int randY = random.nextInt(8) + 1;
         
         Cell nextCell = getCell(randX, randY);
         
