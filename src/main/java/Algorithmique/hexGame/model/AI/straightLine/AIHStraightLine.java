@@ -2,85 +2,65 @@ package Algorithmique.hexGame.model.AI.straightLine;
 
 import Algorithmique.hexGame.model.AI.AIPlayer;
 import Algorithmique.hexGame.model.Cell;
-import Algorithmique.hexGame.model.HexModel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Random;
 
 /*................................................................................................................................
  . Copyright (c)
  .
  . The AIHStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 09/06/17 13:43
+ . Last Modified : 10/06/17 14:53
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
-public class AIHStraightLine implements AIPlayer
+public class AIHStraightLine extends AIPlayer
 {
-    private HexModel        model       = new HexModel();
-    private ArrayList<Cell> playedCells = new ArrayList<>();
-    private Random          random      = new Random();
-    
-    public AIHStraightLine ()
+    protected Cell getFirstMove ()
     {
-        playedCells = new ArrayList<>();
-    }
+        int x = random.nextInt(8) + 1;
+        int y = 1;
     
-    @Override
-    public Cell getNextMove ()
-    {
-        return playedCells.size() == 0 ? getFirstMove() : getFollowingMove();
-    }
-    
-    private Cell getFirstMove ()
-    {
-        Random random = new Random();
-        
-        int i = random.nextInt(8) + 1;
-        int j = 1;
-        
-        Cell cell = getCell(i, j);
+        Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            j = random.nextInt(8) + 1;
-            cell = getCell(i, j);
+            y = random.nextInt(8) + 1;
+            cell = getCell(x, y);
         }
         
         playedCells.add(cell);
         return cell;
     }
     
-    private Cell getFollowingMove ()
+    protected Cell getFollowingMove ()
     {
         int size = playedCells.size();
         Cell lastPlayed = playedCells.get(size - 1);
-        
-        int i = lastPlayed.getX();
-        int j = lastPlayed.getY();
+    
+        int x = lastPlayed.getX();
+        int y = lastPlayed.getY();
         
         ArrayList<Cell> cellsToPlay = new ArrayList<>();
         
         //Bottom-Right
-        cellsToPlay.add(getCell(i, j + 1));
+        cellsToPlay.add(getCell(x, y + 1));
         
         //Bottom-Left
-        cellsToPlay.add(getCell(i - 1, j + 1));
+        cellsToPlay.add(getCell(x - 1, y + 1));
         
         //Right
-        cellsToPlay.add(getCell(i + 1, j));
+        cellsToPlay.add(getCell(x + 1, y));
         
         //Left
-        cellsToPlay.add(getCell(i - 1, j));
+        cellsToPlay.add(getCell(x - 1, y));
         
         //Top-Right
-        cellsToPlay.add(getCell(i + 1, j - 1));
+        cellsToPlay.add(getCell(x + 1, y - 1));
         
         //Top-Left
-        cellsToPlay.add(getCell(i, j - 1));
+        cellsToPlay.add(getCell(x, y - 1));
         
         for (Cell cell : cellsToPlay)
         {
@@ -91,51 +71,20 @@ public class AIHStraightLine implements AIPlayer
             }
         }
     
-        int randX = random.nextInt(8) + 1;
-        int randY = random.nextInt(8) + 1;
-        
-        Cell nextCell = getCell(randX, randY);
-        
-        while (!isValid(nextCell))
+        Cell newStart = getFirstMove();
+    
+        while (!isValid(newStart))
         {
-            randX = new Random().nextInt(8) + 1;
-            randY = new Random().nextInt(8) + 1;
-            
-            nextCell = getCell(randX, randY);
+            newStart = getFirstMove();
         }
-        
-        playedCells.add(nextCell);
-        return nextCell;
-    }
     
-    private Cell getCell (int x, int y)
-    {
-        return model.grid.getCell(x, y);
-    }
-    
-    private boolean isValid (Cell cell)
-    {
-        return cell != null && !model.grid.getPast(cell) && cell.getColor() == Color.WHITE;
+        playedCells.add(newStart);
+        return newStart;
     }
     
     @Override
     public Color getAIColor ()
     {
         return Color.RED;
-    }
-    
-    @Override
-    public void update (Observable o, Object arg)
-    {
-        if(o == null) return;
-        if(!(o instanceof HexModel)) return;
-        
-        model = (HexModel) o;
-        
-        //If game restarts
-        if(!model.getCurrentGame())
-        {
-            playedCells.clear();
-        }
     }
 }

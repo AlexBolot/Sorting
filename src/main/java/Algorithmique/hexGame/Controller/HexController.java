@@ -19,7 +19,7 @@ import java.net.URL;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 09/06/17 13:43
+ . Last Modified : 10/06/17 14:32
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -170,6 +170,7 @@ public class HexController implements ActionListener, MouseListener
                     c.setColor(playerColor);
                     validMove = true;
                     playSound();
+                    aiPlayer.setLastMove(c);
                 }
             }
     
@@ -192,16 +193,7 @@ public class HexController implements ActionListener, MouseListener
     
     private void playAiMove ()
     {
-        try
-        {
-            Thread.sleep(1000);
-            aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
-            playSound();
-        }
-        catch (InterruptedException ie)
-        {
-            ie.printStackTrace();
-        }
+        aiPlayer.getNextMove().setColor(aiPlayer.getAIColor());
     }
     
     //region empty methods
