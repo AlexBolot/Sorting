@@ -14,17 +14,19 @@ import java.util.Random;
  .
  . The AIPlayer	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:13
+ . Last Modified : 10/06/17 18:22
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 public abstract class AIPlayer implements Observer
 {
-    protected HexModel        model       = new HexModel();
-    protected ArrayList<Cell> playedCells = new ArrayList<>();
-    protected Random          random      = new Random();
-    protected Cell lastOpponentMove;
+    protected static HexModel        model       = new HexModel();
+    protected static ArrayList<Cell> playedCells = new ArrayList<>();
+    protected static Cell lastOpponentMove;
+    protected static Color  color1 = Color.BLUE;
+    protected static Color  color2 = Color.RED;
+    protected static Random random = new Random();
     
     public Cell getNextMove ()
     {

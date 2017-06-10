@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIBlocking1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:13
+ . Last Modified : 10/06/17 18:39
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -98,7 +98,7 @@ public class AIBlocking1 extends AIPlayer
         {
             if(isValid(cell))
             {
-                playedCells.add(cell);
+                //playedCells.add(cell);
                 return cell;
             }
         }
@@ -109,13 +109,13 @@ public class AIBlocking1 extends AIPlayer
         {
             newStart = getFirstMove();
         }
-        
-        playedCells.add(newStart);
+    
+        //playedCells.add(newStart);
         return newStart;
     }
     
     public Color getAIColor ()
     {
-        return Color.BLUE;
+        return color1;
     }
 }

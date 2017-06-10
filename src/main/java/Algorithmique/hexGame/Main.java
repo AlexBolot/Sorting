@@ -4,6 +4,8 @@ import Algorithmique.hexGame.controller.HexController;
 import Algorithmique.hexGame.model.AI.AIPlayer;
 import Algorithmique.hexGame.model.AI.blocking.AIBlocking1;
 import Algorithmique.hexGame.model.AI.blocking.AIBlocking2;
+import Algorithmique.hexGame.model.AI.mixing.AIMixing1;
+import Algorithmique.hexGame.model.AI.mixing.AIMixing2;
 import Algorithmique.hexGame.model.AI.pathFinding.AIPathFinding;
 import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine1;
 import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine2;
@@ -18,7 +20,7 @@ import java.util.Scanner;
  .
  . The Main	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:05
+ . Last Modified : 10/06/17 18:39
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -38,7 +40,7 @@ public class Main
         AIPlayer ai;
         
         //Who plays first ?
-        System.out.println("AI Plays First ? (y/n)");
+        System.out.print("AI Plays First ? (y/n)  ");
         aiFirst = sc.nextLine().equalsIgnoreCase("y");
     
         //Which IA ?
@@ -55,9 +57,9 @@ public class Main
     
     private static AIPlayer aiChoice (Scanner sc, Boolean aiFirst)
     {
-        System.out.println("Which AI ?");
-        System.out.println("(1) StraightLine - (2) Blocking - (3) PathFinding ");
-    
+        System.out.println("Which AI : ");
+        System.out.println("(1) StraightLine\n" + "(2) Blocking\n" + "(3) PathFinding\n" + "(4) Mixing");
+        
         try
         {
             switch (sc.nextInt())
@@ -68,6 +70,8 @@ public class Main
                     return aiFirst ? new AIBlocking1() : new AIBlocking2();
                 case 3:
                     return aiFirst ? new AIPathFinding() : new AIPathFinding();
+                case 4:
+                    return aiFirst ? new AIMixing1() : new AIMixing2();
             }
         }
         catch (InputMismatchException ignored)

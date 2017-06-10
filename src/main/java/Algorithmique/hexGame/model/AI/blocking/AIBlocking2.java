@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIBlocking2	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:06
+ . Last Modified : 10/06/17 16:18
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -115,6 +115,6 @@ public class AIBlocking2 extends AIPlayer
     
     public Color getAIColor ()
     {
-        return Color.RED;
+        return color2;
     }
 }

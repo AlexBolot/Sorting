@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIStraightLine1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 15:56
+ . Last Modified : 10/06/17 16:18
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -86,6 +86,6 @@ public class AIStraightLine1 extends AIPlayer
     @Override
     public Color getAIColor ()
     {
-        return Color.BLUE;
+        return color1;
     }
 }
