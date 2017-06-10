@@ -9,24 +9,24 @@ import java.util.ArrayList;
 /*................................................................................................................................
  . Copyright (c)
  .
- . The AIVStraightLine	 Class was Coded by : Alexandre BOLOT
+ . The AIStraightLine1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 14:53
+ . Last Modified : 10/06/17 15:56
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
-public class AIVStraightLine extends AIPlayer
+public class AIStraightLine1 extends AIPlayer
 {
     protected Cell getFirstMove ()
     {
         int x = 1;
-        int y = random.nextInt(8) + 1;
+        int y = getRandCoord();
     
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            y = random.nextInt(8) + 1;
+            y = getRandCoord();
             cell = getCell(x, y);
         }
     

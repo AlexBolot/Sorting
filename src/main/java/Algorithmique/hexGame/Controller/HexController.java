@@ -19,7 +19,7 @@ import java.net.URL;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 14:32
+ . Last Modified : 10/06/17 16:13
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -142,11 +142,11 @@ public class HexController implements ActionListener, MouseListener
     }
     
     /**
-     *****
+     ****
      
      Action de la souris en jeu
  
-     ******
+     *****
      */
     
     @Override

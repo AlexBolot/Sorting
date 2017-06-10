@@ -9,20 +9,20 @@ import java.util.ArrayList;
 /*................................................................................................................................
  . Copyright (c)
  .
- . The AIHBlocking	 Class was Coded by : Alexandre BOLOT
+ . The AIBlocking1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 15:46
+ . Last Modified : 10/06/17 16:13
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
-public class AIHBlocking extends AIPlayer
+public class AIBlocking1 extends AIPlayer
 {
-    private boolean blockRight;
+    private boolean blockTop;
     
-    public AIHBlocking ()
+    public AIBlocking1 ()
     {
-        blockRight = random.nextBoolean();
+        blockTop = random.nextBoolean();
     }
     
     @Override
@@ -33,13 +33,13 @@ public class AIHBlocking extends AIPlayer
     
     protected Cell getFirstMove ()
     {
-        int x = random.nextInt(8) + 1;
-        int y = 1;
+        int x = 1;
+        int y = getRandCoord();
         
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            y = random.nextInt(8) + 1;
+            y = getRandCoord();
             cell = getCell(x, y);
         }
         
@@ -53,45 +53,46 @@ public class AIHBlocking extends AIPlayer
         int y = lastOpponentMove.getY();
         
         ArrayList<Cell> cellsToPlay = new ArrayList<>();
-    
-        //region if(blockRight) -> Adding Right first
-        if(blockRight)
+        
+        //Right
+        cellsToPlay.add(getCell(x, y + 1));
+        
+        //region if(blockTop) -> Adding Top first
+        if(blockTop)
         {
+            //Top-Right
+            cellsToPlay.add(getCell(x - 1, y + 1));
+            
             //Bottom-Right
             cellsToPlay.add(getCell(x + 1, y));
-        
+            
+            //Top-Left
+            cellsToPlay.add(getCell(x - 1, y));
+            
             //Bottom-Left
             cellsToPlay.add(getCell(x + 1, y - 1));
-        
-            //Right
-            cellsToPlay.add(getCell(x, y + 1));
-        
-            //Left
-            cellsToPlay.add(getCell(x, y - 1));
         }
         //endregion
-        //region else -> Adding Left first
+        //region else -> Adding Bottom first
         else
         {
-            //Bottom-Left
-            cellsToPlay.add(getCell(x + 1, y - 1));
-        
             //Bottom-Right
             cellsToPlay.add(getCell(x + 1, y));
-        
-            //Left
-            cellsToPlay.add(getCell(x, y - 1));
-        
-            //Right
-            cellsToPlay.add(getCell(x, y + 1));
+            
+            //Top-Right
+            cellsToPlay.add(getCell(x - 1, y + 1));
+            
+            //Bottom-Left
+            cellsToPlay.add(getCell(x + 1, y - 1));
+            
+            //Top-Left
+            cellsToPlay.add(getCell(x - 1, y));
         }
         //endregion
         
-        //Top-Right
-        cellsToPlay.add(getCell(x - 1, y + 1));
+        //Left
+        cellsToPlay.add(getCell(x, y - 1));
         
-        //Top-Left
-        cellsToPlay.add(getCell(x - 1, y));
         
         for (Cell cell : cellsToPlay)
         {
@@ -115,6 +116,6 @@ public class AIHBlocking extends AIPlayer
     
     public Color getAIColor ()
     {
-        return Color.RED;
+        return Color.BLUE;
     }
 }

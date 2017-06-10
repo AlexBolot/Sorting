@@ -14,7 +14,7 @@ import java.util.Random;
  .
  . The AIPlayer	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 14:45
+ . Last Modified : 10/06/17 16:13
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -43,6 +43,11 @@ public abstract class AIPlayer implements Observer
     protected boolean isValid (Cell cell)
     {
         return cell != null && !model.grid.getPast(cell) && cell.getColor() == Color.WHITE;
+    }
+    
+    protected int getRandCoord ()
+    {
+        return random.nextInt(8) + 1;
     }
     
     public abstract Color getAIColor ();

@@ -2,10 +2,11 @@ package Algorithmique.hexGame;
 
 import Algorithmique.hexGame.controller.HexController;
 import Algorithmique.hexGame.model.AI.AIPlayer;
-import Algorithmique.hexGame.model.AI.blocking.AIHBlocking;
+import Algorithmique.hexGame.model.AI.blocking.AIBlocking1;
+import Algorithmique.hexGame.model.AI.blocking.AIBlocking2;
 import Algorithmique.hexGame.model.AI.pathFinding.AIPathFinding;
-import Algorithmique.hexGame.model.AI.straightLine.AIHStraightLine;
-import Algorithmique.hexGame.model.AI.straightLine.AIVStraightLine;
+import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine1;
+import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine2;
 import Algorithmique.hexGame.model.HexModel;
 import Algorithmique.hexGame.view.HexView;
 
@@ -17,7 +18,7 @@ import java.util.Scanner;
  .
  . The Main	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 15:45
+ . Last Modified : 10/06/17 16:05
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -62,9 +63,9 @@ public class Main
             switch (sc.nextInt())
             {
                 case 1:
-                    return aiFirst ? new AIVStraightLine() : new AIHStraightLine();
+                    return aiFirst ? new AIStraightLine1() : new AIStraightLine2();
                 case 2:
-                    return aiFirst ? new AIHBlocking() : new AIHBlocking();
+                    return aiFirst ? new AIBlocking1() : new AIBlocking2();
                 case 3:
                     return aiFirst ? new AIPathFinding() : new AIPathFinding();
             }
