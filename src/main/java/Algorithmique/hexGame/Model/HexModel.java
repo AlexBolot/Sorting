@@ -9,7 +9,7 @@ import java.util.Observable;
  .
  . The HexModel	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 08/06/17 13:47
+ . Last Modified : 10/06/17 18:48
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -25,13 +25,13 @@ public class HexModel extends Observable
     
     public Grid grid = new Grid(10, 10); // La grille du jeu
     /**
-     *****************
+     **************
      
      Les attributs inGame et currentGame permettent de connaitre l'état du jeu. L'attribut inGame permet de différencier le panel du menu et
      du jeu et l'attribut currentGame permet de savoir si une partie est en cours. Grâce à l'attribut currentGame on peut proposer différente
      action dans le menu, comme une action de reset si une partie est en cours.
-     
-     ******************
+ 
+     ***************
      */
     private boolean inGame; // Si on n'est sur le panel jeu
     private boolean currentGame; // Si une partie est en cours
@@ -40,11 +40,11 @@ public class HexModel extends Observable
     private boolean victory; // 0 si un player gagne et 1 sinon
     
     /**
-     ***********
+     ********
      
      Constructeur
-     
-     ************
+ 
+     *********
      */
     public HexModel ()
     {
@@ -57,11 +57,11 @@ public class HexModel extends Observable
     }
     
     /**
-     ***********
+     ********
      
      Accesseurs
-     
-     ************
+ 
+     *********
      */
     public boolean getInGame ()
     {
@@ -118,11 +118,11 @@ public class HexModel extends Observable
     }
     
     /**
-     ***********
+     ********
      
      Méthode appelé au restart, elle reconstruit la grid et affecte les attributs comme dans le constructeur
-     
-     ************
+ 
+     *********
      */
     public void rebuild ()
     {
@@ -137,7 +137,7 @@ public class HexModel extends Observable
     }
     
     /**
-     ***********
+     ********
      
      Méthode pour détecter la victory d'un player
      
@@ -151,8 +151,8 @@ public class HexModel extends Observable
      va faire un appel récursif à la méthode rechercheGagnant en les passant en paramètre ce qui va nous donner au fur et à mesure les
      cellules voisines de toutes les cellules de la couelur du player. Si pour une des cellules voisines la coordonnée X (respectivement Y)
      est supérieur ou égale au nombre de lignes -2 ( respectivement le nombre de colones -2), le player bleu (respectivement rouge) gagne.
-     
-     ************
+ 
+     *********
      */
     public void researchVictory (int i, int j)
     {
@@ -210,57 +210,29 @@ public class HexModel extends Observable
     
     public ArrayList<Cell> researchNeighborCells (Cell cellForResearch)
     {
-        
         ArrayList<Cell> neighborCells = new ArrayList<>(); // Arraylist qui va stocker les cellules voisines si elles existes
         int i = cellForResearch.getX();
         int j = cellForResearch.getY();
         Color color = cellForResearch.getColor();
         
         // On créer 6 celules qui correspondent aux 6 cellules voisines d'une cellule
-        Cell c1 = grid.getCell(i - 1, j);
-        Cell c2 = grid.getCell(i - 1, j + 1);
-        Cell c3 = grid.getCell(i, j + 1);
-        Cell c4 = grid.getCell(i + 1, j);
-        Cell c5 = grid.getCell(i + 1, j - 1);
-        Cell c6 = grid.getCell(i, j - 1);
+        Cell tmpCells[] = new Cell[]{grid.getCell(i - 1, j),
+                                     grid.getCell(i - 1, j + 1),
+                                     grid.getCell(i, j + 1),
+                                     grid.getCell(i + 1, j),
+                                     grid.getCell(i + 1, j - 1),
+                                     grid.getCell(i, j - 1)};
         
         // En revanche pour les cellules des coins et du bord il n'y a pas 6 cellules voisines mais moins, c'est pourquoi on test si elles sont null.
         // Si elles le sont c'est qu'il n'existe pas de cellule voisines avec les coordonées reseignéé.
-        
-        if(c1 != null && !grid.getPast(c1) && c1.getColor() == color)
+    
+        for (Cell cell : tmpCells)
         {
-            neighborCells.add(c1);
-            grid.setPast(c1);
-        }
-        
-        if(c2 != null && !grid.getPast(c2) && c2.getColor() == color)
-        {
-            neighborCells.add(c2);
-            grid.setPast(c2);
-        }
-        
-        if(c3 != null && !grid.getPast(c3) && c3.getColor() == color)
-        {
-            neighborCells.add(c3);
-            grid.setPast(c3);
-        }
-        
-        if(c4 != null && !grid.getPast(c4) && c4.getColor() == color)
-        {
-            neighborCells.add(c4);
-            grid.setPast(c4);
-        }
-        
-        if(c5 != null && !grid.getPast(c5) && c5.getColor() == color)
-        {
-            neighborCells.add(c5);
-            grid.setPast(c5);
-        }
-        
-        if(c6 != null && !grid.getPast(c6) && c6.getColor() == color)
-        {
-            neighborCells.add(c6);
-            grid.setPast(c6);
+            if(cell != null && !grid.getPast(cell) && cell.getColor() == color)
+            {
+                neighborCells.add(cell);
+                grid.setPast(cell);
+            }
         }
         
         return neighborCells;
