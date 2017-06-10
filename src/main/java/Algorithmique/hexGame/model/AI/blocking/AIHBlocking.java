@@ -11,13 +11,20 @@ import java.util.ArrayList;
  .
  . The AIHBlocking	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 14:50
+ . Last Modified : 10/06/17 15:46
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 public class AIHBlocking extends AIPlayer
 {
+    private boolean blockRight;
+    
+    public AIHBlocking ()
+    {
+        blockRight = random.nextBoolean();
+    }
+    
     @Override
     public Cell getNextMove ()
     {
@@ -46,18 +53,39 @@ public class AIHBlocking extends AIPlayer
         int y = lastOpponentMove.getY();
         
         ArrayList<Cell> cellsToPlay = new ArrayList<>();
+    
+        //region if(blockRight) -> Adding Right first
+        if(blockRight)
+        {
+            //Bottom-Right
+            cellsToPlay.add(getCell(x + 1, y));
         
-        //Bottom-Right
-        cellsToPlay.add(getCell(x + 1, y));
+            //Bottom-Left
+            cellsToPlay.add(getCell(x + 1, y - 1));
         
-        //Bottom-Left
-        cellsToPlay.add(getCell(x + 1, y - 1));
+            //Right
+            cellsToPlay.add(getCell(x, y + 1));
         
-        //Right
-        cellsToPlay.add(getCell(x, y + 1));
+            //Left
+            cellsToPlay.add(getCell(x, y - 1));
+        }
+        //endregion
+        //region else -> Adding Left first
+        else
+        {
+            //Bottom-Left
+            cellsToPlay.add(getCell(x + 1, y - 1));
         
-        //Left
-        cellsToPlay.add(getCell(x, y - 1));
+            //Bottom-Right
+            cellsToPlay.add(getCell(x + 1, y));
+        
+            //Left
+            cellsToPlay.add(getCell(x, y - 1));
+        
+            //Right
+            cellsToPlay.add(getCell(x, y + 1));
+        }
+        //endregion
         
         //Top-Right
         cellsToPlay.add(getCell(x - 1, y + 1));

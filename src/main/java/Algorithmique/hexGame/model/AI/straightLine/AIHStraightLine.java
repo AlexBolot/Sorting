@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIHStraightLine	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 14:53
+ . Last Modified : 10/06/17 15:44
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -26,7 +26,7 @@ public class AIHStraightLine extends AIPlayer
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            y = random.nextInt(8) + 1;
+            x = random.nextInt(8) + 1;
             cell = getCell(x, y);
         }
         
