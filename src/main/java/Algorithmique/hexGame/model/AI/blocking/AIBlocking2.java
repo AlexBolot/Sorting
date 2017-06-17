@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIBlocking2	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:18
+ . Last Modified : 17/06/17 22:41
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -28,7 +28,7 @@ public class AIBlocking2 extends AIPlayer
     @Override
     public Cell getNextMove ()
     {
-        return playedCells.size() == 0 && lastOpponentMove == null ? getFirstMove() : getFollowingMove();
+        return getFollowingMove();
     }
     
     protected Cell getFirstMove ()
@@ -98,6 +98,7 @@ public class AIBlocking2 extends AIPlayer
             if(isValid(cell))
             {
                 playedCells.add(cell);
+                blockRight = random.nextBoolean();
                 return cell;
             }
         }
@@ -110,6 +111,7 @@ public class AIBlocking2 extends AIPlayer
         }
         
         playedCells.add(newStart);
+        blockRight = random.nextBoolean();
         return newStart;
     }
     
