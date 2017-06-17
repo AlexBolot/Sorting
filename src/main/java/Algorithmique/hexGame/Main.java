@@ -6,7 +6,7 @@ import Algorithmique.hexGame.model.AI.blocking.AIBlocking1;
 import Algorithmique.hexGame.model.AI.blocking.AIBlocking2;
 import Algorithmique.hexGame.model.AI.mixing.AIMixing1;
 import Algorithmique.hexGame.model.AI.mixing.AIMixing2;
-import Algorithmique.hexGame.model.AI.pathFinding.AIPathFinding;
+import Algorithmique.hexGame.model.AI.pathFinding.AIPathFinding1;
 import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine1;
 import Algorithmique.hexGame.model.AI.straightLine.AIStraightLine2;
 import Algorithmique.hexGame.model.HexModel;
@@ -20,7 +20,7 @@ import java.util.Scanner;
  .
  . The Main	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 18:39
+ . Last Modified : 17/06/17 22:41
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -69,7 +69,7 @@ public class Main
                 case 2:
                     return aiFirst ? new AIBlocking1() : new AIBlocking2();
                 case 3:
-                    return aiFirst ? new AIPathFinding() : new AIPathFinding();
+                    return aiFirst ? new AIPathFinding1() : new AIPathFinding1();
                 case 4:
                     return aiFirst ? new AIMixing1() : new AIMixing2();
             }
