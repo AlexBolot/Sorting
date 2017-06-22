@@ -19,7 +19,7 @@ import java.net.URL;
  .
  . The HexController	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 16:13
+ . Last Modified : 22/06/17 12:45
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -38,10 +38,6 @@ public class HexController implements ActionListener, MouseListener
     private Boolean  aiFirst;
     private Color    playerColor;
     
-    /**
-     Constructeurs
-     */
-
     public HexController (HexModel model, HexView view, AIPlayer player, Boolean aiFirst)
     {
         this.model = model;
@@ -60,14 +56,6 @@ public class HexController implements ActionListener, MouseListener
         
         view.pVictory.panel.bReturn.addActionListener(this);
     }
-    
-    /**
-     Action des boutons
-     
-     Les attributs du model enJeu et enCours permettent de connaitre l'état du jeu.
-     L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
-     Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
-     */
     
     @Override
     public void actionPerformed (ActionEvent e)
@@ -110,6 +98,8 @@ public class HexController implements ActionListener, MouseListener
                 model.rebuild();
                 model.setInGame(true);
                 model.setCurrentGame(true);
+    
+                if(aiFirst) playAiMove();
             }
             else if(e.getSource() == view.pMenu.bQuit)
             {
@@ -141,14 +131,6 @@ public class HexController implements ActionListener, MouseListener
         }
     }
     
-    /**
-     ****
-     
-     Action de la souris en jeu
- 
-     *****
-     */
-    
     @Override
     public void mouseClicked (MouseEvent e)
     {
@@ -170,7 +152,7 @@ public class HexController implements ActionListener, MouseListener
                     c.setColor(playerColor);
                     validMove = true;
                     playSound();
-                    aiPlayer.setLastMove(c);
+                    aiPlayer.addLastMove(c);
                 }
             }
     

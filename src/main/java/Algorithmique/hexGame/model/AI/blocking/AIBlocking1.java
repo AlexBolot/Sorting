@@ -6,12 +6,14 @@ import Algorithmique.hexGame.model.Cell;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static Algorithmique.hexGame.model.AI.blocking.BlockingService.*;
+
 /*................................................................................................................................
  . Copyright (c)
  .
  . The AIBlocking1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 22/06/17 09:24
+ . Last Modified : 22/06/17 13:38
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -28,19 +30,23 @@ public class AIBlocking1 extends AIPlayer
     @Override
     public Cell getNextMove ()
     {
-        return playedCells.size() == 0 && lastOpponentMove == null ? getFirstMove() : getFollowingMove();
+        return playedCells.size() == 0 && opponentMoves.size() == 0 ? getFirstMove() : getFollowingMove();
     }
     
     protected Cell getFirstMove ()
     {
         int x = 1;
         int y = getRandCoord(4);
+    
+        int attempts = 0;
         
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            y = getRandCoord(4);
+            y = attempts < 10 ? getRandCoord(4) : getRandCoord();
             cell = getCell(x, y);
+    
+            attempts++;
         }
         
         playedCells.add(cell);
@@ -49,56 +55,50 @@ public class AIBlocking1 extends AIPlayer
     
     protected Cell getFollowingMove ()
     {
-        int x = lastOpponentMove.getX();
-        int y = lastOpponentMove.getY();
+        int lastIndex = opponentMoves.size() - 1;
+    
+        int x = opponentMoves.get(lastIndex).getX();
+        int y = opponentMoves.get(lastIndex).getY();
+    
+        boolean blockRight = getBlockRight();
         
         ArrayList<Cell> cellsToPlay = new ArrayList<>();
-        
-        //Right
-        cellsToPlay.add(getCell(x, y + 1));
-        
-        //region if(blockTop) -> Adding Top first
-        if(blockTop)
+        Cell currentCell = new Cell(x, y);
+    
+        //region --> Add Cells to play
+        if(blockRight)
         {
-            //Top-Right
-            cellsToPlay.add(getCell(x - 1, y + 1));
-            
-            //Bottom-Right
-            cellsToPlay.add(getCell(x + 1, y));
-            
-            //Top-Left
-            cellsToPlay.add(getCell(x - 1, y));
-            
-            //Bottom-Left
-            cellsToPlay.add(getCell(x + 1, y - 1));
+            if(blockTop)
+            {
+                blockRightTop(cellsToPlay, model.grid, currentCell);
+            }
+            else
+            {
+                blockRightBottom(cellsToPlay, model.grid, currentCell);
+            }
         }
-        //endregion
-        //region else -> Adding Bottom first
+    
         else
         {
-            //Bottom-Right
-            cellsToPlay.add(getCell(x + 1, y));
-            
-            //Top-Right
-            cellsToPlay.add(getCell(x - 1, y + 1));
-            
-            //Bottom-Left
-            cellsToPlay.add(getCell(x + 1, y - 1));
-            
-            //Top-Left
-            cellsToPlay.add(getCell(x - 1, y));
+            if(blockTop)
+            {
+                blockLeftTop(cellsToPlay, model.grid, currentCell);
+            }
+            else
+            {
+                blockLeftBottom(cellsToPlay, model.grid, currentCell);
+            }
         }
         //endregion
-        
-        //Left
-        cellsToPlay.add(getCell(x, y - 1));
-        
+    
+        blockTop = random.nextBoolean();
         
         for (Cell cell : cellsToPlay)
         {
             if(isValid(cell))
             {
-                //playedCells.add(cell);
+                System.out.println("result");
+                System.out.println(cell.getX() + " " + cell.getY());
                 return cell;
             }
         }
@@ -110,12 +110,31 @@ public class AIBlocking1 extends AIPlayer
             newStart = getFirstMove();
         }
     
-        //playedCells.add(newStart);
         return newStart;
     }
     
     public Color getAIColor ()
     {
         return color1;
+    }
+    
+    public boolean getBlockRight ()
+    {
+        int nbRight = 0;
+        int nbLeft = 0;
+        
+        for (Cell cell : opponentMoves)
+        {
+            if(cell.getY() <= 4) nbLeft++;
+            else nbRight++;
+        }
+        
+        System.out.println("BlockRight" + (nbRight < nbLeft));
+        System.out.println("Right :" + nbRight);
+        System.out.println("Left :" + nbLeft);
+        
+        //Si il y a plus de cases à droite on bloque vers la gauche.
+        //Sinon on bloque vers la droite.
+        return nbRight < nbLeft;
     }
 }

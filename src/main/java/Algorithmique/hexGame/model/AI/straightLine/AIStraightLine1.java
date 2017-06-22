@@ -11,7 +11,7 @@ import java.util.ArrayList;
  .
  . The AIStraightLine1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 22/06/17 09:25
+ . Last Modified : 22/06/17 13:38
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -23,11 +23,15 @@ public class AIStraightLine1 extends AIPlayer
         int x = 1;
         int y = getRandCoord(4);
     
+        int attempts = 0;
+        
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            y = getRandCoord(4);
+            y = attempts < 10 ? getRandCoord(4) : getRandCoord();
             cell = getCell(x, y);
+    
+            attempts++;
         }
     
         playedCells.add(cell);
