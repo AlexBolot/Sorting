@@ -13,7 +13,7 @@ import static Algorithmique.hexGame.model.AI.blocking.BlockingService.*;
  .
  . The AIBlocking1	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 22/06/17 13:38
+ . Last Modified : 22/06/17 15:38
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -128,10 +128,6 @@ public class AIBlocking1 extends AIPlayer
             if(cell.getY() <= 4) nbLeft++;
             else nbRight++;
         }
-        
-        System.out.println("BlockRight" + (nbRight < nbLeft));
-        System.out.println("Right :" + nbRight);
-        System.out.println("Left :" + nbLeft);
         
         //Si il y a plus de cases à droite on bloque vers la gauche.
         //Sinon on bloque vers la droite.
