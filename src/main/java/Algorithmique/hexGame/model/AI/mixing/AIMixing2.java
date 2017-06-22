@@ -12,7 +12,7 @@ import java.awt.*;
  .
  . The AIMixing2	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 18:39
+ . Last Modified : 22/06/17 09:25
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -22,13 +22,13 @@ public class AIMixing2 extends AIPlayer
     @Override
     protected Cell getFirstMove ()
     {
-        int x = getRandCoord();
+        int x = getRandCoord(4);
         int y = 1;
         
         Cell cell = getCell(x, y);
         while (!isValid(cell))
         {
-            x = getRandCoord();
+            x = getRandCoord(4);
             cell = getCell(x, y);
         }
         

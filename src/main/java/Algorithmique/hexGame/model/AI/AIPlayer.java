@@ -14,7 +14,7 @@ import java.util.Random;
  .
  . The AIPlayer	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 10/06/17 18:22
+ . Last Modified : 22/06/17 09:24
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -50,6 +50,11 @@ public abstract class AIPlayer implements Observer
     protected int getRandCoord ()
     {
         return random.nextInt(8) + 1;
+    }
+    
+    protected int getRandCoord (int start)
+    {
+        return random.nextInt(8 - start) + (1 + start);
     }
     
     public abstract Color getAIColor ();
