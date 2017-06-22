@@ -8,7 +8,7 @@ import java.util.ArrayList;
  .
  . The Grid	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 24/05/17 14:26
+ . Last Modified : 22/06/17 13:44
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -33,16 +33,29 @@ public class Grid extends ArrayList<Cell>
     public void buildGrid ()
     {
         Cell c;
+    
         for (int i = 0; i < nbLines; i++)
         {
             for (int j = 0; j < nbColumns; j++)
             {
                 if((i != 0 && j != nbColumns - 1) || (i != nbLines - 1 && j != 0))
                 {
-                    if(i == 0) c = new Cell(i, j, Color.BLUE, true);
-                    else if(i == nbLines - 1) c = new Cell(i, j, Color.BLUE, true);
-                    else if(j == 0) c = new Cell(i, j, Color.RED, true);
-                    else if(j == nbColumns - 1) c = new Cell(i, j, Color.RED, true);
+                    if(i == 0)
+                    {
+                        c = new Cell(i, j, Color.BLUE, true);
+                    }
+                    else if(i == nbLines - 1)
+                    {
+                        c = new Cell(i, j, Color.BLUE, true);
+                    }
+                    else if(j == 0)
+                    {
+                        c = new Cell(i, j, Color.RED, true);
+                    }
+                    else if(j == nbColumns - 1)
+                    {
+                        c = new Cell(i, j, Color.RED, true);
+                    }
                     else c = new Cell(i, j, Color.WHITE, false);
                     
                     add(c);

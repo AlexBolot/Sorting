@@ -7,7 +7,7 @@ import java.awt.*;
  .
  . The Cell	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 22/06/17 11:55
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -20,7 +20,6 @@ import java.awt.*;
 
 public class Cell extends Polygon
 {
-    
     static final int ECART_ORIGIN  = 50;
     static final int ECART_CELLULE = 62;
     
@@ -30,37 +29,36 @@ public class Cell extends Polygon
     private boolean border;
     private boolean past = false;
     
-    /**
-     ***********
-     
-     Constructeur
-     
-     ************
-     */
     public Cell (int x, int y, Color color, boolean border)
     {
-        this.x = y;
-        this.y = x;
+        this.x = x;
+        this.y = y;
         this.color = color;
         this.border = border;
         
         double arc = (Math.PI * 2) / 6;
         for (int i = 0; i <= 6; i++)
         {
-            int pX = (int) Math.round((((this.x + (this.y / 2.0)) * ECART_CELLULE) + ECART_ORIGIN) + 30 * Math.cos(arc * i + 100));
-            int pY = (int) Math.round(((this.y * (ECART_CELLULE - 10)) + (ECART_ORIGIN * 2)) + 30 * Math.sin(arc * i + 100));
+            int pX = (int) Math.round((((this.y + (this.x / 2.0)) * ECART_CELLULE) + ECART_ORIGIN) + 30 * Math.cos(arc * i + 100));
+            int pY = (int) Math.round(((this.x * (ECART_CELLULE - 10)) + (ECART_ORIGIN * 2)) + 30 * Math.sin(arc * i + 100));
             addPoint(pX, pY);
         }
     }
     
+    public Cell (int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    
     public int getX ()
     {
-        return this.y;
+        return this.x;
     }
     
     public int getY ()
     {
-        return this.x;
+        return this.y;
     }
     
     public Color getColor ()
