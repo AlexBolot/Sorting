@@ -7,7 +7,7 @@ import java.util.HashMap;
  .
  . The FindMajority	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 13/04/17 14:46
+ . Last Modified : 26/06/17 16:30
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -18,16 +18,16 @@ public class FindMajority<T>
     public T AlgorithmeNaif (T[] table)
     {
         int count = 0;
-        
-        for (int i = 0; i < table.length; i++)
+    
+        for (T aTable1 : table)
         {
-            for (int j = 0; j < table.length; j++)
+            for (T aTable : table)
             {
-                if(table[j].equals(table[i])) count++;
+                if(aTable.equals(aTable1)) count++;
             }
     
-            if(count > table.length / 2) return table[i];
-    
+            if(count > table.length / 2) return aTable1;
+        
             count = 0;
         }
         
@@ -38,8 +38,8 @@ public class FindMajority<T>
     {
         if(table.length == 0) return null;
         if(table.length == 1) return table[0];
-        
-        HashMap<T, Integer> listValues = new HashMap<T, Integer>();
+    
+        HashMap<T, Integer> listValues = new HashMap<>();
     
         for (T aTable : table)
         {
@@ -68,9 +68,9 @@ public class FindMajority<T>
     
     private CoupleValues Private_Diviser (T[] table, int start, int end)
     {
-        if(end - start == 1) return new CoupleValues(table[end], 1);
-        
-        if(start != end && start >= 0 && end > 0)
+        if(end - start == 0) return new CoupleValues(table[end], 1);
+    
+        if(start != end && start >= 0 && end > 0 && end < table.length)
         {
             int middle = (start + end) / 2;
             CoupleValues couple1 = Private_Diviser(table, start, middle);
@@ -89,14 +89,14 @@ public class FindMajority<T>
     private int Occurences (T t, T[] table, int start, int end)
     {
         int occurences = 0;
-        
-        if(t != null)
+    
+        if(t == null) return occurences;
+    
+        for (int i = start; i < end; i++)
         {
-            for (int i = start; i < end; i++)
-            {
-                if(table[i].equals(t)) occurences++;
-            }
+            if(table[i].equals(t)) occurences++;
         }
+    
         return occurences;
     }
     
