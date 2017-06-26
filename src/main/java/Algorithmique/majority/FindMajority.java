@@ -7,7 +7,7 @@ import java.util.HashMap;
  .
  . The FindMajority	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 26/06/17 16:30
+ . Last Modified : 26/06/17 16:31
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -75,9 +75,9 @@ public class FindMajority<T>
             int middle = (start + end) / 2;
             CoupleValues couple1 = Private_Diviser(table, start, middle);
             CoupleValues couple2 = Private_Diviser(table, middle + 1, end);
-            
-            int occ1 = couple1.amount + Occurences(couple1.value, table, middle + 1, end);
-            int occ2 = couple2.amount + Occurences(couple2.value, table, start, middle);
+    
+            int occ1 = couple1.amount + occurences(couple1.value, table, middle + 1, end);
+            int occ2 = couple2.amount + occurences(couple2.value, table, start, middle);
             
             if(occ1 > table.length / 2 && couple1.amount > 0) return new CoupleValues(couple1.value, occ1);
             if(occ2 > table.length / 2 && couple2.amount > 0) return new CoupleValues(couple2.value, occ2);
@@ -86,7 +86,7 @@ public class FindMajority<T>
         return new CoupleValues(null, -1);
     }
     
-    private int Occurences (T t, T[] table, int start, int end)
+    private int occurences (T t, T[] table, int start, int end)
     {
         int occurences = 0;
     
