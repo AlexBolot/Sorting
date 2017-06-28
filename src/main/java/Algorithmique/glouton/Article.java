@@ -7,36 +7,18 @@ import java.util.Comparator;
  .
  . The Article	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 27/04/17 16:06
+ . Last Modified : 28/06/17 17:14
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 class Article
 {
-    public static final Comparator<Article> DescValComparator = new Comparator<Article>()
-    {
-        public int compare (Article o1, Article o2)
-        {
-            return o2.value - o1.value;
-        }
-    };
+    public static final Comparator<Article> DescValComparator = (o1, o2) -> o2.value - o1.value;
     
-    public static final Comparator<Article> CroiWeiComparator = new Comparator<Article>()
-    {
-        public int compare (Article o1, Article o2)
-        {
-            return o1.weight - o2.weight;
-        }
-    };
+    public static final Comparator<Article> CroiWeiComparator = Comparator.comparingInt(o -> o.weight);
     
-    public static final Comparator<Article> RatioComparator = new Comparator<Article>()
-    {
-        public int compare (Article o1, Article o2)
-        {
-            return (o2.value / o2.weight) - (o1.value / o1.weight);
-        }
-    };
+    public static final Comparator<Article> RatioComparator = (o1, o2) -> (o2.value / o2.weight) - (o1.value / o1.weight);
     
     String name;
     int    value;

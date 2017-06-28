@@ -7,7 +7,7 @@ import java.util.ArrayList;
  .
  . The Glouton	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 27/04/17 16:41
+ . Last Modified : 28/06/17 17:22
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -65,30 +65,25 @@ public class Glouton
         if(index < 0) return sac;
         
         Article article = articles.get(index);
-        
-        if(article.weight > maxWeight)
+    
+        if(articles.get(index).weight > maxWeight)
         {
             sac.addAll(backend_BruteForce(articles, maxWeight, index - 1));
             return sac;
         }
-        else
+    
+        ArrayList<Article> sacAvec = backend_BruteForce(articles, maxWeight - articles.get(index).weight, index - 1);
+        int valueAvec = article.value + totalValueOf(sacAvec);
+    
+        ArrayList<Article> sacSans = backend_BruteForce(articles, maxWeight, index - 1);
+        int valueSans = totalValueOf(sacSans);
+    
+        if(valueAvec > valueSans)
         {
-            ArrayList<Article> sacAvec = backend_BruteForce(articles, maxWeight - article.weight, index - 1);
-            int valueAvec = article.value + totalValueOf(sacAvec);
-            
-            ArrayList<Article> sacSans = backend_BruteForce(articles, maxWeight, index - 1);
-            int valueSans = totalValueOf(sacSans);
-            
-            if(valueAvec > valueSans)
-            {
-                sac.addAll(sacAvec);
-                sac.add(articles.get(index));
-            }
-            else
-            {
-                sac.addAll(sacSans);
-            }
+            sac.addAll(sacAvec);
+            sac.add(article);
         }
+        else sac.addAll(sacSans);
         
         return sac;
     }
