@@ -7,7 +7,7 @@ import java.math.BigInteger;
  .
  . The Fibonacci	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 13/04/17 16:53
+ . Last Modified : 14/07/17 13:32
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -41,24 +41,12 @@ public class Fibonacci
         
         BigInteger index_1;
         BigInteger index_2;
-        
-        if(!tab[index - 1].equals(BigInteger.valueOf(-1)))
-        {
-            index_1 = tab[index - 1];
-        }
-        else
-        {
-            index_1 = memoiseRecursif(tab, index - 1);
-        }
-        
-        if(!tab[index - 2].equals(BigInteger.valueOf(-1)))
-        {
-            index_2 = tab[index - 2];
-        }
-        else
-        {
-            index_2 = memoiseRecursif(tab, index - 2);
-        }
+    
+        boolean exist = !tab[index - 1].equals(BigInteger.valueOf(-1));
+        index_1 = exist ? tab[index - 1] : memoiseRecursif(tab, index - 1);
+    
+        exist = !tab[index - 2].equals(BigInteger.valueOf(-1));
+        index_2 = exist ? tab[index - 2] : memoiseRecursif(tab, index - 2);
         
         return index_1.add(index_2);
     }
