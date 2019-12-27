@@ -11,28 +11,26 @@ import java.awt.*;
  .
  . The VictoryPanel	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 27/12/2019 12:59
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 /**
- Abomnes Gauthier
- Bretheau Yann
- S3C
+ * Abomnes Gauthier
+ * Bretheau Yann
+ * S3C
  */
 
-public class VictoryPanel extends JPanel
-{
-    
+public class VictoryPanel extends JPanel {
+
     public JButton bReturn = new JButton("Retour");
-    public JLabel  title   = new JLabel("Un joueur à gagné!");
+    public JLabel title = new JLabel("Un joueur à gagné!");
     private HexModel model;
-    
-    VictoryPanel (HexModel model)
-    {
+
+    VictoryPanel(HexModel model) {
         this.model = model;
-        
+
         this.setBackground(Color.WHITE);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         Box box1 = new Box(BoxLayout.X_AXIS);
@@ -44,24 +42,20 @@ public class VictoryPanel extends JPanel
         //Box 2
         bReturn.setSize(150, 50);
         box2.add(bReturn);
-        
+
         add(box1);
         add(box2);
     }
-    
-    
+
+
     @Override
-    public void paint (Graphics g)
-    {
+    public void paint(Graphics g) {
         super.paint(g);
-        
-        if(model.getWinner() == Color.RED)
-        {
+
+        if (model.getWinner() == Color.RED) {
             this.setBackground(Color.RED);
             title.setText("Le joueur Rouge à gagné!");
-        }
-        else
-        {
+        } else {
             this.setBackground(Color.BLUE);
             title.setText("Le joueur Bleu à gagné!");
         }

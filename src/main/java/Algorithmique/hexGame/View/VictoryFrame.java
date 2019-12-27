@@ -10,7 +10,7 @@ import javax.swing.*;
  .
  . The VictoryFrame	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 02/06/17 17:16
+ . Last Modified : 27/12/2019 12:59
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
@@ -21,17 +21,17 @@ import javax.swing.*;
  * S3C
  */
 
-public class VictoryFrame{
+public class VictoryFrame {
 
     private static final int Width = 600;
     private static final int Height = 150;
     public VictoryPanel panel;
     private JFrame frame;
 
-    VictoryFrame (HexModel model){
+    VictoryFrame(HexModel model) {
         panel = new VictoryPanel(model);
         frame = new JFrame("Victoire!");
-        frame.setBounds(400,50,Width,Height);
+        frame.setBounds(400, 50, Width, Height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -40,7 +40,7 @@ public class VictoryFrame{
         frame.setVisible(false);
     }
 
-    public void setVisible(boolean visible){
+    public void setVisible(boolean visible) {
         frame.setVisible(visible);
     }
 }
