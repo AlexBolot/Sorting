@@ -9,39 +9,35 @@ import junit.framework.TestSuite;
  .
  . The AppTest	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 11/04/17 23:47
+ . Last Modified : 27/12/2019 12:59
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 /**
- Unit test for simple App.
+ * Unit test for simple App.
  */
-public class AppTest extends TestCase
-{
+public class AppTest extends TestCase {
     /**
-     Create the test case
-     
-     @param testName name of the test case
+     * Create the test case
+     *
+     * @param testName name of the test case
      */
-    public AppTest (String testName)
-    {
+    public AppTest(String testName) {
         super(testName);
     }
-    
+
     /**
-     @return the suite of tests being tested
+     * @return the suite of tests being tested
      */
-    public static Test suite ()
-    {
+    public static Test suite() {
         return new TestSuite(AppTest.class);
     }
-    
+
     /**
-     Rigourous Test :-)
+     * Rigourous Test :-)
      */
-    public void testApp ()
-    {
+    public void testApp() {
         assertTrue(true);
     }
 }

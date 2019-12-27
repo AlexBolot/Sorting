@@ -8,100 +8,75 @@ import java.util.ArrayList;
  .
  . The Grid	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 22/06/17 13:44
+ . Last Modified : 27/12/2019 12:59
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
 /**
- Abomnes Gauthier
- Bretheau Yann
- S3C
+ * Abomnes Gauthier
+ * Bretheau Yann
+ * S3C
  */
 
-public class Grid extends ArrayList<Cell>
-{
+public class Grid extends ArrayList<Cell> {
     private int nbLines;
     private int nbColumns;
-    
-    public Grid (int nbLines, int nbColumns)
-    {
+
+    public Grid(int nbLines, int nbColumns) {
         this.nbLines = nbLines;
         this.nbColumns = nbColumns;
     }
-    
-    public void buildGrid ()
-    {
+
+    public void buildGrid() {
         Cell c;
-    
-        for (int i = 0; i < nbLines; i++)
-        {
-            for (int j = 0; j < nbColumns; j++)
-            {
-                if((i != 0 && j != nbColumns - 1) || (i != nbLines - 1 && j != 0))
-                {
-                    if(i == 0)
-                    {
+
+        for (int i = 0; i < nbLines; i++) {
+            for (int j = 0; j < nbColumns; j++) {
+                if ((i != 0 && j != nbColumns - 1) || (i != nbLines - 1 && j != 0)) {
+                    if (i == 0) {
                         c = new Cell(i, j, Color.BLUE, true);
-                    }
-                    else if(i == nbLines - 1)
-                    {
+                    } else if (i == nbLines - 1) {
                         c = new Cell(i, j, Color.BLUE, true);
-                    }
-                    else if(j == 0)
-                    {
+                    } else if (j == 0) {
                         c = new Cell(i, j, Color.RED, true);
-                    }
-                    else if(j == nbColumns - 1)
-                    {
+                    } else if (j == nbColumns - 1) {
                         c = new Cell(i, j, Color.RED, true);
-                    }
-                    else c = new Cell(i, j, Color.WHITE, false);
-                    
+                    } else c = new Cell(i, j, Color.WHITE, false);
+
                     add(c);
                 }
             }
         }
     }
-    
-    public int getNbLines ()
-    {
+
+    public int getNbLines() {
         return nbLines;
     }
-    
-    public int getNbColumns ()
-    {
+
+    public int getNbColumns() {
         return nbColumns;
     }
-    
-    public Cell getCell (int i, int j)
-    {
+
+    public Cell getCell(int i, int j) {
         Cell cell = null;
-        for (Cell c : this)
-        {
-            if(c.getX() == i && c.getY() == j)
-            {
+        for (Cell c : this) {
+            if (c.getX() == i && c.getY() == j) {
                 cell = c;
             }
         }
         return cell;
     }
-    
-    public void setPast (Cell cell)
-    {
+
+    public void setPast(Cell cell) {
         cell.setPast(true);
     }
-    
-    public boolean getPast (Cell cell)
-    {
-        return cell.getPast();
+
+    public boolean isNotPast(Cell cell) {
+        return !cell.getPast();
     }
-    
-    public void resetPast ()
-    {
-        for (Cell c : this)
-        {
-            c.setPast(false);
-        }
+
+    public void resetPast() {
+        this.forEach(c -> c.setPast(false));
     }
 }

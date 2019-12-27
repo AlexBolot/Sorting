@@ -13,119 +13,97 @@ import static Algorithmique.hexGame.model.AI.blocking.BlockingService.*;
  .
  . The AIBlocking2	 Class was Coded by : Alexandre BOLOT
  .
- . Last Modified : 22/06/17 15:38
+ . Last Modified : 27/12/2019 12:59
  .
  . Contact : bolotalex06@gmail.com
  ...............................................................................................................................*/
 
-public class AIBlocking2 extends AIPlayer
-{
+public class AIBlocking2 extends AIPlayer {
     private boolean blockRight;
-    
-    public AIBlocking2 ()
-    {
+
+    public AIBlocking2() {
         blockRight = random.nextBoolean();
     }
-    
+
     @Override
-    public Cell getNextMove ()
-    {
+    public Cell getNextMove() {
         return getFollowingMove();
     }
-    
-    protected Cell getFirstMove ()
-    {
+
+    protected Cell getFirstMove() {
         int x = getRandCoord(4);
         int y = 1;
-    
+
         int attempts = 0;
-        
+
         Cell cell = getCell(x, y);
-        while (!isValid(cell))
-        {
+        while (!isValid(cell)) {
             x = attempts < 10 ? getRandCoord(4) : getRandCoord();
             cell = getCell(x, y);
-    
+
             attempts++;
         }
-        
+
         playedCells.add(cell);
         return cell;
     }
-    
-    protected Cell getFollowingMove ()
-    {
+
+    protected Cell getFollowingMove() {
         int lastIndex = opponentMoves.size() - 1;
-    
+
         int x = opponentMoves.get(lastIndex).getX();
         int y = opponentMoves.get(lastIndex).getY();
-    
+
         boolean blockTop = getBlockTop();
-        
+
         ArrayList<Cell> cellsToPlay = new ArrayList<>();
         Cell currentCell = new Cell(x, y);
-    
+
         //region --> Add Cells to play
-        if(blockTop)
-        {
-            if(blockRight)
-            {
+        if (blockTop) {
+            if (blockRight) {
                 blockTopRight(cellsToPlay, model.grid, currentCell);
-            }
-            else
-            {
+            } else {
                 blockTopLeft(cellsToPlay, model.grid, currentCell);
             }
-        }
-    
-        else
-        {
-            if(blockRight)
-            {
+        } else {
+            if (blockRight) {
                 blockBottomRight(cellsToPlay, model.grid, currentCell);
-            }
-            else
-            {
+            } else {
                 blockBottomLeft(cellsToPlay, model.grid, currentCell);
             }
         }
         //endregion
-    
+
         blockRight = random.nextBoolean();
-        
-        for (Cell cell : cellsToPlay)
-        {
-            if(isValid(cell))
-            {
+
+        for (Cell cell : cellsToPlay) {
+            if (isValid(cell)) {
                 System.out.println("result");
                 System.out.println(cell.getX() + " " + cell.getY());
                 return cell;
             }
         }
-        
+
         Cell newStart = getFirstMove();
-        
-        while (!isValid(newStart))
-        {
+
+        while (!isValid(newStart)) {
             newStart = getFirstMove();
         }
-        
+
         return newStart;
     }
-    
-    public Color getAIColor ()
-    {
+
+    public Color getAIColor() {
         return color2;
     }
-    
-    public boolean getBlockTop ()
-    {
+
+    public boolean getBlockTop() {
         int nbTop = 0;
         int nbBottom = 0;
-        
-        for (Cell cell : opponentMoves)
-        {
-            if(cell.getX() >= 4) nbBottom++;
+
+        for (Cell cell : opponentMoves) {
+            if (cell.getX() >= 4) nbBottom++;
             else nbTop++;
         }
         //Si il y a plus de cases à droite on bloque vers la gauche.
